@@ -17,12 +17,6 @@ import (
 	_ "github.com/mat/besticon/ico"
 )
 
-type fetchConfig struct {
-	Username string `form:"username"`
-	Password string `form:"password"`
-	Hour     int64  `form:"hour"`
-}
-
 func main() {
 	r := gin.New()
 	r.Use(gin.Recovery())
@@ -64,7 +58,6 @@ func setupRouter(r *gin.Engine) {
 			return
 		}
 		if len(icons) == 0 {
-			// TODO auto make a default icon
 			c.JSON(http.StatusOK, failed("favicon not found"))
 			return
 		}
